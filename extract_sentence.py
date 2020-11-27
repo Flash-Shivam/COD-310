@@ -30,7 +30,7 @@ for data in x:
     else:
         about.append("")
     if "Policy_stance" in data.keys():
-        policy_stance.append(data['Policy_stance'][0])
+        policy_stance.append(data['Policy_stance'])
     else:
         policy_stance.append("")
     if "By" in data.keys():
@@ -40,7 +40,7 @@ for data in x:
         j = j + 1
 print(i,j)
 df = pd.DataFrame({'Policy':policy,'NewsPaper Name':newspaper,'article_id':a_id,'by':by,'about':about,'ideology score':score,'Policy Stance':policy_stance})
-writer = pd.ExcelWriter('output3.xlsx',engine='xlsxwriter')
+writer = pd.ExcelWriter('output4.xlsx',engine='xlsxwriter')
 df.to_excel(writer,sheet_name='Sheet1',index=False)
 writer.save()
 #print(i)
