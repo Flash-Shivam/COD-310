@@ -12,6 +12,7 @@ policy = []
 about = []
 newspaper = []
 by = []
+policy_stance = []
 a_id = []
 i = 0
 j = 0
@@ -25,14 +26,18 @@ for data in x:
     policy.append(data['Policy'])
     newspaper.append(data['Source'])
     about.append(data['About'])
+    if "Policy_stance" in data.keys():
+        policy_stance.append(data['Policy_stance'])
+    else:
+        policy_stance.append("")
     if "By" in data.keys():
         by.append(data['By'])
     else:
         by.append("")
         j = j + 1
 print(i,j)
-df = pd.DataFrame({'Policy':policy,'NewsPaper Name':newspaper,'article_id':a_id,'by':by,'about':about,'ideology score':score})
-writer = pd.ExcelWriter('output.xlsx',engine='xlsxwriter')
+df = pd.DataFrame({'Policy':policy,'NewsPaper Name':newspaper,'article_id':a_id,'by':by,'about':about,'ideology score':score,'Policy Stance':policy_stance})
+writer = pd.ExcelWriter('output2.xlsx',engine='xlsxwriter')
 df.to_excel(writer,sheet_name='Sheet1',index=False)
 writer.save()
 #print(i)
